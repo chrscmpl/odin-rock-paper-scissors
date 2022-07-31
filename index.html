@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Rock Paper Scissors</title>
+  </head>
+  <body>
+    <div class="section header">
+      <div class="logo">
+        <div class="logo-text">Rock Paper Scissors</div>
+        <div class="logo-emoji">🤜🤛</div>
+      </div>
+      <div class="result">Let's Play!</div>
+    </div>
+    <div class="section content">
+      <div class="moves">
+        <button class="move rock" data-value="0">✊</button>
+        <button class="move paper" data-value="1">🖐</button>
+        <button class="move scissors" data-value="2">✌</button>
+      </div>
+      <div class="history">
+        <div class="history-header">History</div>
+        <div class="entries"></div>
+        <div class="history-footer">
+          <div class="wins" style="visibility: hidden">0</div>
+          <div class="draws" style="visibility: hidden">0</div>
+          <div class="losses" style="visibility: hidden">0</div>
+        </div>
+      </div>
+    </div>
+    <div class="section footer"></div>
+    <script src="./index.js"></script>
+  </body>
+</html>

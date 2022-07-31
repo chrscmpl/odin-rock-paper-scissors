@@ -1,0 +1,135 @@
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section {
+  flex: 1;
+}
+
+.header,
+.footer {
+  background-color: darkslategray;
+}
+
+.header {
+  color: white;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 22%;
+  border-bottom: 10px solid black;
+}
+
+.logo {
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo-text {
+  font-size: 30px;
+  -webkit-text-stroke: 2px black;
+}
+
+.logo-emoji {
+  margin-top: -40px;
+  font-size: 100px;
+}
+
+.result {
+  font-size: 100px;
+  -webkit-text-stroke: 5px black;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7.5%;
+  flex: 3;
+  height: 60%;
+  background-color: darkolivegreen;
+}
+
+.moves {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.move {
+  font-size: 100px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.move:hover {
+  transition-duration: 0.5s;
+  transition-property: transform text-shadow;
+  transform: scale(2, 2);
+  text-shadow: white 0px 0px 7px, white 0px 0px 7px, white 0px 0px 7px;
+}
+
+.history {
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 20%;
+  margin-right: 100px;
+  border: 10px solid black;
+}
+
+.history-header,
+.history-footer {
+  background-color: darkslategray;
+  font-weight: 900;
+  height: 10%;
+  flex: 1;
+}
+
+.history-header {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 10px solid black;
+  font-size: 40px;
+  -webkit-text-stroke: 2.5px black;
+}
+
+.entries {
+  background-color: beige;
+  /* flex: 8; */
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.entry {
+  display: flex;
+  justify-content: space-around;
+  font-size: 25px;
+}
+
+.history-footer {
+  border-top: 10px solid black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  font-size: 30px;
+  -webkit-text-stroke: 2px black;
+}
+
+.footer {
+  flex: 0.3;
+  border-top: 10px solid black;
+}
