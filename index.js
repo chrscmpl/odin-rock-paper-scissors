@@ -81,7 +81,7 @@ function updateHeader(playerWon) {
   if (playerWon) {
     result.textContent = "You win!";
   } else {
-    result.textContent = "You lose";
+    result.textContent = "You lose!";
   }
 }
 
