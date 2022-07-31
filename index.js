@@ -4,6 +4,7 @@ const result = document.querySelector(".result");
 const matchOverview = document.querySelector(".match-overview");
 const history = document.querySelector(".entries");
 const counters = document.querySelectorAll(".wins,.draws,.losses");
+const resetSection = document.querySelector(".reset-and-message");
 
 //for each element in moves add a 'click' event listener that
 //generates a random number and invokes update() giving it
@@ -21,6 +22,20 @@ moves.forEach((element) =>
   })
 );
 
+//add a 'click' event listener to the reset button that
+//deletes or sets back to default the content of history,
+//matchOverview, result, counters, and hides the reset button again
+resetSection.children[1].addEventListener("click", () => {
+  history.textContent = "";
+  matchOverview.textContent = "";
+  result.textContent = "Let's Play!";
+  resetSection.setAttribute("style", "visibility: hidden");
+  counters.forEach((element) => {
+    element.textContent = "0";
+    element.setAttribute("style", "visibility: hidden");
+  });
+});
+
 //if it is a draw return null,
 //if the player has won return true,
 //if the computer has won return false
@@ -30,7 +45,7 @@ function checkVictory(playerMove, computerMove) {
   return false;
 }
 
-//invokes the functions to update the header and the history footer
+//invokes the functions to update the header, matchOverview and the history footer
 //invokes the createEntry function and appends the result to the history
 function update(playerWon, playerMove, computerMove) {
   updateHeader(playerWon);
@@ -39,6 +54,7 @@ function update(playerWon, playerMove, computerMove) {
 
   history.appendChild(createEntry(playerWon, playerMove, computerMove));
   history.scrollTop = history.scrollHeight;
+  if (gameOver()) showReset();
 }
 
 //creates and returns a div element with class entry and color that
@@ -74,10 +90,10 @@ function createTextDiv(text) {
 function updateHeader(playerWon) {
   if (playerWon === null) {
     result.textContent = "It's a draw";
-    header.setAttribute("style", "gap: 22%");
+    header.setAttribute("style", "gap: 21%");
     return;
   }
-  header.setAttribute("style", "gap: 24%");
+  header.setAttribute("style", "gap: 23%");
   if (playerWon) {
     result.textContent = "You win!";
   } else {
@@ -129,7 +145,24 @@ function updateHistoryFooter(playerWon) {
   const counter = counters[playerWon === null ? 1 : playerWon ? 0 : 2];
   counter.textContent = +counter.textContent + 1;
   if (counter.getAttribute("style") === "visibility: hidden")
-    counter.setAttribute("style", "visibility: visible;");
+    counter.setAttribute("style", "visibility: visible");
+}
+
+//returns true if one of the counters reached 5 before the other
+function gameOver() {
+  return (
+    (counters[0].textContent === "5" && counters[2].textContent < 5) ||
+    (counters[2].textContent === "5" && counters[0].textContent < 5)
+  );
+}
+
+//sets the text above the reset button and shows it
+function showReset() {
+  resetSection.children[0].textContent =
+    counters[0].textContent > counters[2].textContent
+      ? "You win!"
+      : "You lose!";
+  resetSection.setAttribute("style", "visibility: visible");
 }
 
 //takes a number and returns the corresponding emoji
