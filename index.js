@@ -1,6 +1,7 @@
 const moves = document.querySelectorAll(".move");
 const header = document.querySelector(".header");
 const result = document.querySelector(".result");
+const matchOverview = document.querySelector(".match-overview");
 const history = document.querySelector(".entries");
 const counters = document.querySelectorAll(".wins,.draws,.losses");
 
@@ -33,7 +34,8 @@ function checkVictory(playerMove, computerMove) {
 //invokes the createEntry function and appends the result to the history
 function update(playerWon, playerMove, computerMove) {
   updateHeader(playerWon);
-  updateFooter(playerWon);
+  updateMatchOverview(playerWon, playerMove, computerMove);
+  updateHistoryFooter(playerWon);
 
   history.appendChild(createEntry(playerWon, playerMove, computerMove));
   history.scrollTop = history.scrollHeight;
@@ -83,9 +85,47 @@ function updateHeader(playerWon) {
   }
 }
 
+//appends 3 divs to the text overview containing a text showing the result of the match
+// and invokes the matchOverviewEffects() function;
+function updateMatchOverview(playerWon, playerMove, computerMove) {
+  matchOverview.textContent = "";
+  matchOverview.appendChild(
+    createTextDiv(playerWon ? playerMove : computerMove)
+  );
+  matchOverview.appendChild(
+    createTextDiv(playerWon === null ? "DRAW" : "BEATS")
+  );
+  matchOverview.appendChild(
+    createTextDiv(playerWon ? computerMove : playerMove)
+  );
+  matchOverviewEffects(playerWon);
+}
+
+//changes the text-shadows (borders) of the moves so that the player's move has a green border
+//and the computer's move has a red border and gives matchOverview some style attributes that are
+//reverted after 1 second with a nice transition set in the css
+function matchOverviewEffects(playerWon) {
+  matchOverview.children[playerWon !== false ? 0 : 2].setAttribute(
+    "style",
+    "text-shadow: 2px 2px 0 #008000, 2px -2px 0 #008000, -2px 2px 0 #008000, -2px -2px 0 #008000, 2px 0px 0 #008000, 0px 2px 0 #008000, -2px 0px 0 #008000, 0px -2px 0 #008000, 0px 0px 11px rgba(0,128,0,0);"
+  );
+  matchOverview.children[playerWon !== false ? 2 : 0].setAttribute(
+    "style",
+    "text-shadow: 2px 2px 0 #ff0000, 2px -2px 0 #ff0000, -2px 2px 0 #ff0000, -2px -2px 0 #ff0000, 2px 0px 0 #ff0000, 0px 2px 0 #ff0000, -2px 0px 0 #ff0000, 0px -2px 0 #ff0000, 0px 0px 11px rgba(255,0,0,0);"
+  );
+  matchOverview.setAttribute(
+    "style",
+    `font-size: 135px; 
+    gap: 65px;`
+  );
+  setTimeout(() => {
+    matchOverview.setAttribute("style", "font-size: 100px;");
+  }, 1000);
+}
+
 //increments the counters in the footer under the history and sets their
 //visibility to visible the first time it touches them
-function updateFooter(playerWon) {
+function updateHistoryFooter(playerWon) {
   const counter = counters[playerWon === null ? 1 : playerWon ? 0 : 2];
   counter.textContent = +counter.textContent + 1;
   if (counter.getAttribute("style") === "visibility: hidden")
