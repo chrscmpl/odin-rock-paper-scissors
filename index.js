@@ -132,7 +132,7 @@ function matchOverviewEffects(playerWon) {
   matchOverview.setAttribute(
     "style",
     `font-size: 135px; 
-		gap: 65px;`
+    gap: 65px;`
   );
   setTimeout(() => {
     matchOverview.setAttribute("style", "font-size: 100px;");
