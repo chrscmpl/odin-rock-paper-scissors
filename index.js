@@ -9,7 +9,7 @@ const resetSection = document.querySelector(".reset-and-message");
 //for each element in moves add a 'click' event listener that
 //generates a random number and invokes update() giving it
 //the two moves and victory value as arguments
-moves.forEach((element) =>
+moves.forEach(element =>
   element.addEventListener("click", () => {
     const computerMove = random(3);
     const playerMove = +element.getAttribute("data-value");
@@ -30,7 +30,7 @@ resetSection.children[1].addEventListener("click", () => {
   matchOverview.textContent = "";
   result.textContent = "Let's Play!";
   resetSection.setAttribute("style", "visibility: hidden");
-  counters.forEach((element) => {
+  counters.forEach(element => {
     element.textContent = "0";
     element.setAttribute("style", "visibility: hidden");
   });
@@ -132,7 +132,7 @@ function matchOverviewEffects(playerWon) {
   matchOverview.setAttribute(
     "style",
     `font-size: 135px; 
-    gap: 65px;`
+		gap: 65px;`
   );
   setTimeout(() => {
     matchOverview.setAttribute("style", "font-size: 100px;");
