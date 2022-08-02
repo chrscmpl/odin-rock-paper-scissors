@@ -4,7 +4,9 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" href="icon.png" type="image/x-icon" />
 		<link rel="stylesheet" href="./style.css" />
+		<script src="./index.js" defer></script>
 		<title>Rock Paper Scissors</title>
 	</head>
 	<body>
@@ -23,7 +25,7 @@
 					<button class="move paper" data-value="1">🖐</button>
 					<button class="move scissors" data-value="2">✌</button>
 				</div>
-				<div class="reset-and-message">
+				<div class="reset-and-message hidden">
 					<div class="reset-message">You win!</div>
 					<button class="reset">reset</button>
 				</div>
@@ -32,13 +34,12 @@
 				<div class="history-header">History</div>
 				<div class="entries"></div>
 				<div class="history-footer">
-					<div class="wins" style="visibility: hidden">0</div>
-					<div class="draws" style="visibility: hidden">0</div>
-					<div class="losses" style="visibility: hidden">0</div>
+					<div class="wins hidden">0</div>
+					<div class="draws hidden">0</div>
+					<div class="losses hidden">0</div>
 				</div>
 			</div>
 		</div>
 		<div class="section footer"></div>
-		<script src="./index.js"></script>
 	</body>
 </html>
